@@ -1,14 +1,64 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>Hello GitHub Pages</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Firebase 게시판</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <!-- (선택) CDN 마크다운 렌더러 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <h1>첫 GitHub Pages 사이트</h1>
-  <p>이 파일이 보이면 세팅 성공!</p>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="brand">Firebase 게시판</h1>
+      <nav class="nav">
+        <a href="./admin.html" id="adminLink" class="btn hide">관리자</a>
+        <button id="loginBtn" class="btn">Google 로그인</button>
+        <button id="logoutBtn" class="btn hide">로그아웃</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="composer hide" id="composer">
+      <h2>새 글쓰기</h2>
+      <label>제목
+        <input id="titleInput" type="text" placeholder="제목을 입력" />
+      </label>
+      <label>본문 (Markdown 지원)
+        <textarea id="bodyInput" rows="8" placeholder="내용을 입력"></textarea>
+      </label>
+      <div class="actions">
+        <button id="postBtn" class="btn primary">등록</button>
+        <button id="cancelEditBtn" class="btn hide">취소</button>
+      </div>
+      <p class="hint">* 본문은 간단한 마크다운을 지원합니다.</p>
+    </section>
+
+    <section>
+      <h2>글 목록</h2>
+      <div id="postList" class="cards"></div>
+    </section>
+
+    <template id="postCardTpl">
+      <article class="card">
+        <h3 class="title"></h3>
+        <div class="meta"></div>
+        <div class="body"></div>
+        <div class="card-actions hide">
+          <button class="btn editBtn">수정</button>
+          <button class="btn danger deleteBtn">삭제</button>
+        </div>
+      </article>
+    </template>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="./app.js"></script>
 </body>
 </html>
-
-  
-  
